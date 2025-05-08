@@ -1,100 +1,52 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using DeliveryApp.src.services.OrderService.OrderService.Application.Common;
 using DeliveryApp.src.services.OrderService.OrderService.Infra.Data;
 using DeliveryApp.src.services.OrderService.OrderService.Infra.Repository;
+using DeliveryApp.src.shared.Authentication;
+using DeliveryApp.src.shared.CorrelationId;
+using DeliveryApp.src.shared.DevTools;
+using DeliveryApp.src.shared.Http;
 using DeliveryApp.src.shared.Infra;
+using DeliveryApp.src.shared.Logging;
+using DeliveryApp.src.shared.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore; // Fix for CS1061: Add the required namespace for UseSqlServer
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens; // Fix for CS0117: Ensure the correct namespace for ConfigurationManager
+using Microsoft.IdentityModel.Tokens;
+using Polly;
+using Polly.Extensions.Http;
+using Serilog;
+using Serilog.Sinks.Elasticsearch; // Fix for CS0117: Ensure the correct namespace for ConfigurationManager
 
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services
+    .AddControllers();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<OrderDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("OrderDatabase"))); // Fix for CS0117: Use builder.Configuration instead of Configuration
-
-builder.Services.AddOrderServiceInfrastructure();
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
-        };
-    });
-
-
-builder.Services.AddSwaggerGen();
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddOrderServiceInfrastructure(builder.Configuration)
+    .AddHttpClients(builder.Configuration)
+    .AddJwtAuth(builder.Configuration)
+    .AddSwaggerSupport();
 
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapGet("/env", (IWebHostEnvironment env) => env.EnvironmentName);
+app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseDefaultLogging(builder.Configuration);
+app.UseJwtAuth();
 
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    app.MapPost("/api/auth/token", () =>
-    {
-        var issuer = builder.Configuration["Jwt:Issuer"]!;
-        var audience = builder.Configuration["Jwt:Audience"]!;
-        var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]!);
-
-        // Hardcoded test user claims
-        var claims = new[]
-        {
-        new Claim(JwtRegisteredClaimNames.Sub, "test-user-123"),
-        new Claim(JwtRegisteredClaimNames.Name, "Test User"),
-        new Claim(JwtRegisteredClaimNames.Email, "test.user@example.com"),
-        new Claim("role", "Admin") // Custom claim
-    };
-
-        var securityKey = new SymmetricSecurityKey(key);
-        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-        var token = new JwtSecurityToken(
-            issuer: issuer,
-            audience: audience,
-            claims: claims,
-            expires: DateTime.UtcNow.AddDays(1), // Token valid for 1 day
-            signingCredentials: credentials
-        );
-
-        return Results.Ok(new
-        {
-            Token = new JwtSecurityTokenHandler().WriteToken(token)
-        });
-    })
-.WithName("GetDevToken")
-.AllowAnonymous() // Bypass auth for this endpoint
-.WithTags("Dev Tools");
+    app.MapDevTokenGenerator(builder.Configuration); // Optional
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

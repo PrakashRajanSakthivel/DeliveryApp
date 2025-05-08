@@ -1,4 +1,5 @@
 ﻿using DeliveryApp.src.services.OrderService.OrderService.Domain.Entites;
+using DeliveryApp.src.services.OrderService.OrderService.Domain.Interfaces;
 using DeliveryApp.src.services.OrderService.OrderService.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 

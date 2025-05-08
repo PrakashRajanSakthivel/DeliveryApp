@@ -14,16 +14,21 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="9.0.4" />
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="src\services\OrderService\OrderService.Domain\Exceptions\" />
     <Folder Include="src\services\OrderService\OrderService.Domain\ValueObjects\" />
-    <Folder Include="src\shared\Logging\" />
-    <Folder Include="src\shared\CorrelationId\" />
     <Folder Include="src\shared\Messaging\" />
     <Folder Include="src\shared\Identity\" />
+    <Folder Include="src\shared\Swagger\" />
+    <Folder Include="src\shared\Polly\" />
   </ItemGroup>
 
 </Project>

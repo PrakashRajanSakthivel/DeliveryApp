@@ -7,14 +7,18 @@ namespace DeliveryApp.src.services.OrderService.OrderService.Application.Service
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly ILogger<OrderService> _logger;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService(IOrderRepository orderRepository, ILogger<OrderService> logger)
         {
             _orderRepository = orderRepository;
+            _logger = logger;
         }
 
         public async Task<Guid> CreateOrderAsync(CreateOrderRequest request)
         {
+            _logger.LogInformation("Creating order for UserId: {UserId} at {Time}", request.UserId, DateTime.UtcNow);
+
             var order = new Order
             {
                 OrderId = Guid.NewGuid(),
@@ -33,7 +37,7 @@ namespace DeliveryApp.src.services.OrderService.OrderService.Application.Service
 
             await _orderRepository.AddAsync(order);
             await _orderRepository.SaveChangesAsync();
-
+            _logger.LogInformation("Order {OrderId} created successfully", order.OrderId);
             return order.OrderId;
         }
     }
