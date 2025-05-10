@@ -1,10 +1,10 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Domain.Interfaces;
-using DeliveryApp.src.services.OrderService.OrderService.Infra.Data;
-using DeliveryApp.src.services.OrderService.OrderService.Infra.Repository;
+﻿using OrderService.Domain.Interfaces;
+using OrderService.Infra.Data;
+using OrderService.Infra.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DeliveryApp.src.shared.Infra
+namespace shared.Infra
 {
    
 public static class ServiceCollectionExtensions

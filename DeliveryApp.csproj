@@ -8,6 +8,7 @@
 
 	<PropertyGroup>
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,6 +34,14 @@
     <Folder Include="src\shared\Identity\" />
     <Folder Include="src\shared\Swagger\" />
     <Folder Include="src\shared\Polly\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="src\services\OrderService\OrderService.API\OrderService.API.csproj" />
+    <None Include="src\services\OrderService\OrderService.Application\OrderService.Application.csproj" />
+    <None Include="src\services\OrderService\OrderService.Domain\OrderService.Domain.csproj" />
+    <None Include="src\services\OrderService\OrderService.Infra\OrderService.Infra.csproj" />
+    <None Include="src\shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

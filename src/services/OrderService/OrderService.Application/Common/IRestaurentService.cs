@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.src.services.OrderService.OrderService.Application.Common
+﻿namespace OrderService.Application.Common
 {
     public interface IRestaurentService
     {

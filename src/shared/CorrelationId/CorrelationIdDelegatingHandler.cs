@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.src.shared.CorrelationId
+﻿namespace shared.CorrelationId
 {
     public class CorrelationIdDelegatingHandler : DelegatingHandler
     {

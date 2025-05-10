@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace DeliveryApp.src.shared.Authentication
+namespace shared.Authentication
 {
     // shared/Authentication/AuthExtensions.cs
     public static class AuthExtensions

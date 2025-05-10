@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using DeliveryApp.src.services.OrderService.OrderService.Domain.Entites;
+using OrderService.Domain.Entites;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.Infra.Configuration
+namespace OrderService.Infra.Configuration
 {
     public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {

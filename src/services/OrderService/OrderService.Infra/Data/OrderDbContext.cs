@@ -1,9 +1,9 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Domain.Entites;
+﻿using OrderService.Domain.Entites;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.Infra.Data
+namespace OrderService.Infra.Data
 {
     using Microsoft.EntityFrameworkCore;
 

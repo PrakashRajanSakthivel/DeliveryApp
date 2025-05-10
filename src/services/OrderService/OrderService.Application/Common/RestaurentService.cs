@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.Application.Common
+namespace OrderService.Application.Common
 {
     public class RestaurentService : IRestaurentService
     {

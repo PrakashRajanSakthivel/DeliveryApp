@@ -1,9 +1,9 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Domain.Entites;
-using DeliveryApp.src.services.OrderService.OrderService.Domain.Interfaces;
-using DeliveryApp.src.services.OrderService.OrderService.Infra.Data;
+﻿using OrderService.Domain.Entites;
+using OrderService.Domain.Interfaces;
+using OrderService.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.Infra.Repository
+namespace OrderService.Infra.Repository
 {
     public class OrderRepository : IOrderRepository
     {

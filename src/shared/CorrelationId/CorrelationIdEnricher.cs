@@ -1,7 +1,7 @@
 ﻿using Serilog.Core;
 using Serilog.Events;
 
-namespace DeliveryApp.src.shared.CorrelationId
+namespace shared.CorrelationId
 {
     public class CorrelationIdEnricher : ILogEventEnricher
     {

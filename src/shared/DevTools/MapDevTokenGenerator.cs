@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace DeliveryApp.src.shared.DevTools
+namespace shared.DevTools
 {
     public static class DevTokenEndpoint
     {

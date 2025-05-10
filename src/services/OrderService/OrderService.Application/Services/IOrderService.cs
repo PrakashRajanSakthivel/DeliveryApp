@@ -1,6 +1,6 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Application.Model;
+﻿using OrderService.Application.Model;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.Application.Services
+namespace OrderService.Application.Services
 {
     public interface IOrderService
     {

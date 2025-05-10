@@ -1,9 +1,9 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Application.Common;
-using DeliveryApp.src.shared.CorrelationId;
+﻿using OrderService.Application.Common;
+using shared.CorrelationId;
 using Polly.Extensions.Http;
 using Polly;
 
-namespace DeliveryApp.src.shared.Http
+namespace shared.Http
 {
     // shared/Http/HttpClientPolicies.cs
     public static class HttpClientPolicies

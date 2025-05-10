@@ -1,8 +1,8 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Application.Model;
-using DeliveryApp.src.services.OrderService.OrderService.Domain.Entites;
-using DeliveryApp.src.services.OrderService.OrderService.Domain.Interfaces;
+﻿using OrderService.Application.Model;
+using OrderService.Domain.Entites;
+using OrderService.Domain.Interfaces;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.Application.Services
+namespace OrderService.Application.Services
 {
     public class OrderService : IOrderService
     {

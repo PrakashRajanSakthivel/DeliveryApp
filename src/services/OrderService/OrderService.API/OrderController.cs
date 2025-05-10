@@ -1,8 +1,8 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Application.Model;
-using DeliveryApp.src.services.OrderService.OrderService.Application.Services;
+﻿using OrderService.Application.Model;
 using Microsoft.AspNetCore.Mvc;
+using OrderService.Application.Services;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.API
+namespace OrderService.API
 {
     [ApiController]
     [Route("api/[controller]")]

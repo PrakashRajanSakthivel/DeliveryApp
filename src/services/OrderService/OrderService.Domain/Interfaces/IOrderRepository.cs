@@ -1,6 +1,6 @@
-﻿using DeliveryApp.src.services.OrderService.OrderService.Domain.Entites;
+﻿using OrderService.Domain.Entites;
 
-namespace DeliveryApp.src.services.OrderService.OrderService.Domain.Interfaces
+namespace OrderService.Domain.Interfaces
 {
     public interface IOrderRepository
     {

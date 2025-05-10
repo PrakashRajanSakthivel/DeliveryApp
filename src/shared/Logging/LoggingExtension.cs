@@ -1,7 +1,7 @@
-﻿using DeliveryApp.src.shared.CorrelationId;
+﻿using shared.CorrelationId;
 using Serilog;
 
-namespace DeliveryApp.src.shared.Logging
+namespace shared.Logging
 {
     // shared/Logging/LoggingExtensions.cs
     public static class LoggingExtensions

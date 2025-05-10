@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.src.services.OrderService.OrderService.Application.Model
+﻿namespace OrderService.Application.Model
 {
     public class CreateOrderRequest
     {

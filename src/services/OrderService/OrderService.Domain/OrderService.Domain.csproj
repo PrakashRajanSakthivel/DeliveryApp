@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<RootNamespace>OrderService.Domain</RootNamespace>
+	</PropertyGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.src.services.OrderService.OrderService.Domain.Entites
+﻿namespace OrderService.Domain.Entites
 {
     public class OrderItem
     {
